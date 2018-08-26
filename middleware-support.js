@@ -1,4 +1,5 @@
 const axios = require('axios');
+const _ = require('lodash');
 
 const supportMiddleware = (req, res, next) => {
   const { salesChannel, customer } = res.locals;
@@ -6,11 +7,10 @@ const supportMiddleware = (req, res, next) => {
   const url = `http://localhost:3001/steps?sales_channel=${salesChannel}&customer=${customer}`;
 
   axios.get(url)
-  .then(({ data }) => {
-    for (let i = 0; i < data.length; i++) {
-      if (!supportedSteps.includes(data[i])) {
-        return next(new Error(`Required step [${data[i]} for sales channel [${salesChannel}] and customer [${customer}] is not supported`));
-      }
+  .then(({ data: requiredSteps }) => {
+    const missingSteps = _.difference(requiredSteps, supportedSteps);
+    if (missingSteps.length !== 0) {
+      return next(new Error(`Required steps [${missingSteps}] for sales channel [${salesChannel}] and customer [${customer}] is not supported`));
     }
 
     return next();
