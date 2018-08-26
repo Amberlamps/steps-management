@@ -1,0 +1,17 @@
+{
+  "isReturnsEnabled": {
+    "defaultValue": true,
+    "DE": {
+      "defaultValue": false,
+      "PLUS": {
+        "defaultValue": true
+      }
+    }
+  },
+  "requiredSteps": {
+    "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"],
+    "DE": {
+      "defaultValue": ["ARTICLES", "RETURN_OPTIONS"]
+    }
+  }
+}

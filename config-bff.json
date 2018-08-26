@@ -1,0 +1,11 @@
+{
+  "supportedSteps": {
+    "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"]
+  },
+  "orderedSteps": {
+    "defaultValue": [],
+    "DE": {
+      "defaultValue": ["ARTICLES", "RETURN_OPTIONS"]
+    }
+  }
+}
