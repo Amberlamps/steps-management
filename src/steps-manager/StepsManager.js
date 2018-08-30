@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Row, Col, Spin } from 'antd';
+import { Row, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
 
 import { loadSteps } from './actions';
@@ -8,7 +8,7 @@ import { selectStepsLoadingStatus } from './selectors';
 
 class StepManager extends Component {
   componentDidMount() {
-    this.props.loadSteps();
+    this.props.loadSteps(this.props.onError);
   }
 
   render() {
@@ -34,14 +34,6 @@ StepManager.defaultProps = {
   shouldRenderStep: () => Promise.resolve(true)
 };
 
-const Next = () => (
-  <Button type="primary">Next step</Button>
-);
-
-const Previous = () => (
-  <Button>Previous step</Button>
-);
-
 // validate
 const mapStateToProps = (state) => ({
   loadingStatus: selectStepsLoadingStatus(state)
@@ -53,8 +45,4 @@ const mapDispatchToProps = {
 
 const StepManagerConnected = connect(mapStateToProps, mapDispatchToProps)(StepManager);
 
-export {
-  StepManagerConnected  as StepManager,
-  Next,
-  Previous
-};
+export default StepManagerConnected;

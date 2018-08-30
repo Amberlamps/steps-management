@@ -1,18 +1,19 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-import { StepManager, Next } from '../StepManager';
+import StepManager, { PreviousButton, NextButton } from '../steps-manager';
 
 const ReturnOptions = () => (
   <StepManager>
     <Row>
       <Col>
-        ReturnOptions
+        <h3>ReturnOptions</h3>
       </Col>
     </Row>
     <Row>
       <Col>
-        <Next />
+        <PreviousButton />
+        <NextButton />
       </Col>
     </Row>
   </StepManager>

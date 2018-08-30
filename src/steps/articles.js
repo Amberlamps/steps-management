@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
-import { Row, Col, Input } from 'antd';
+import { Row, Col, Input, Alert } from 'antd';
 import { connect } from 'react-redux';
+import includes from 'lodash/includes';
 
-import { selectUsername } from '../selectors';
-import { setUsername } from '../actions';
-import { StepManager, Previous, Next } from '../StepManager';
+import { selectUsername, selectUsernameError } from '../steps-manager/selectors';
+import { setUsername, setUsernameError, checkUsername } from '../steps-manager/actions';
+import StepManager, { PreviousButton, NextButton } from '../steps-manager';
+
+const validations = (dispatch, getState) => new Promise((resolve, reject) => {
+  const state = getState();
+  const username = selectUsername(state);
+
+  if (!username) {
+    dispatch(setUsernameError('No username selected'));
+
+    return reject();
+  }
+
+  checkUsername(username)
+  .then(() => {
+    dispatch(setUsernameError(''));
+    resolve();
+  })
+  .catch((err) => {
+    dispatch(setUsernameError('Username already exists'));
+    reject();
+  });
+});
+
+const onError = (dispatch, getState) => (errors) => {
+  if (includes(errors, 'USERNAME_ALREADY_EXISTS')) {
+    dispatch(setUsernameError('Username already exists'));
+  }
+};
 
 class Articles extends Component {
   constructor() {
@@ -18,19 +46,25 @@ class Articles extends Component {
   }
 
   render() {
-    const { username } = this.props;
+    const { username, error } = this.props;
 
     return (
-      <StepManager>
+      <StepManager onError={onError}>
         <Row>
           <Col>
-            <Input onChange={this.handleUsernameChange} value={username} addonBefore="Username:" />
+            <h3>Articles</h3>
           </Col>
         </Row>
         <Row>
           <Col>
-            <Previous />
-            <Next />
+            <Input onChange={this.handleUsernameChange} value={username} addonBefore="Username:" />
+            {error && <Alert type="error" showIcon message={error} style={{ marginTop: '10px' }} />}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <PreviousButton />
+            <NextButton validations={validations} />
           </Col>
         </Row>
       </StepManager>
@@ -39,7 +73,8 @@ class Articles extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  username: selectUsername(state)
+  username: selectUsername(state),
+  error: selectUsernameError(state)
 });
 
 const mapDispatchToProps = {

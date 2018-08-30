@@ -11,7 +11,7 @@
   "requiredSteps": {
     "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"],
     "DE": {
-      "defaultValue": ["PAYMENTS", "ARTICLES", "RETURN_OPTIONS"]
+      "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"]
     }
   }
 }
