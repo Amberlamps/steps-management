@@ -1,11 +1,20 @@
 {
-  "supportedSteps": {
-    "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"]
+  "isOnlineReturnsEnabled": {
+    "defaultValue": false,
+    "DE": {
+      "defaultValue": true
+    },
+    "IT": {
+      "defaultValue": true
+    }
   },
-  "orderedSteps": {
-    "defaultValue": [],
+  "steps": {
+    "defaultValue": ["ARTICLES"],
     "DE": {
       "defaultValue": ["ARTICLES", "RETURN_OPTIONS"]
+    },
+    "IT": {
+      "defaultValue": ["ARTICLES", "REFUND_OPTIONS", "RETURN_OPTIONS"]
     }
   }
 }

@@ -1,7 +1,24 @@
-GET http://localhost:3001/steps?sales_channel=DE
+GET http://localhost:3001/return-options?sales_channel=DE&customer=NON
 
 ###
 
-GET http://localhost:3002/steps
+GET http://localhost:3001/refund-options?sales_channel=IT
+
+###
+
+GET http://localhost:3002/articles
 X-Sales-Channel: DE
 X-Zalando-Customer: PLUS
+
+###
+
+GET http://localhost:3002/return-options
+X-Sales-Channel: IT
+X-Zalando-Customer: PLUS
+
+###
+
+GET http://localhost:3002/refund-options
+X-Sales-Channel: IT
+X-Zalando-Customer: PLUS
+

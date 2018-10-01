@@ -11,7 +11,7 @@ const lookUpValueFor = (localConfig) => (...keys) => {
     return localConfig.defaultValue;
   }
 
-  throw new Error(`Cannot find confiugrations for ${keyName}`);
+  throw new Error(`Cannot find configurations for ${keyName}`);
 };
 
 const configMiddleware = (filename) => {

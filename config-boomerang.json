@@ -1,17 +1,26 @@
 {
-  "isReturnsEnabled": {
-    "defaultValue": true,
+  "isOnlineReturnsEnabled": {
+    "defaultValue": false,
     "DE": {
-      "defaultValue": false,
-      "PLUS": {
-        "defaultValue": true
-      }
+      "defaultValue": true
+    },
+    "IT": {
+      "defaultValue": true
     }
   },
-  "requiredSteps": {
-    "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"],
+  "refundOptions": {
+    "defaultValue": ["ORIGINAL"],
+    "IT": {
+      "defaultValue": ["ORIGINAL", "INTERNATIONAL_BANK_ACCOUNT", "ZALANDO_CREDIT_STORE"]
+    }
+  },
+  "returnOptions": {
+    "defaultValue": ["DROP_OFF"],
     "DE": {
-      "defaultValue": ["ARTICLES", "RETURN_OPTIONS", "PAYMENTS"]
+      "defaultValue": ["DROP_OFF"],
+      "PLUS": {
+        "defaultValue": ["PICK_UP", "DROP_OFF"]
+      }
     }
   }
 }
